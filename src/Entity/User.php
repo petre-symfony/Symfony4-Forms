@@ -31,13 +31,13 @@ class User implements UserInterface {
   private $roles = [];
 
   /**
-   * @ORM\Column(type="string", length=255)
+   * @ORM\Column(type="string", length=255, nullable=true)
    * @Groups("main")
    */
   private $firstName;
 
   /**
-   * @ORM\Column(type="string", length=255, nullable=true)
+   * @ORM\Column(type="string", length=255)
    */
   private $password;
 
