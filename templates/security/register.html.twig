@@ -14,8 +14,10 @@
   {%- if help is not empty -%}
     {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
   {%- endif -%}
-  {{ dump() }}
-  {{- form_label(form) -}}
+
+  {{- form_label(form, null, {
+    label_attr: {class: 'sr-only'}
+  }) -}}
   {{- form_errors(form) -}}
   {{- form_widget(form, widget_attr) -}}
   {{- form_help(form) -}}
