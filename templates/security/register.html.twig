@@ -23,6 +23,14 @@
   {{- form_help(form) -}}
 {%- endblock form_row -%}
 
+{% block _user_registration_form_agreeTerms_row %}
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" name="_terms" required> Agree to terms I for sure read
+    </label>
+  </div>
+{% endblock %}
+
 {% block body %}
   <div class="container">
     <div class="row">
