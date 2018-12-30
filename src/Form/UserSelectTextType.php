@@ -36,7 +36,10 @@ class UserSelectTextType extends AbstractType {
     	'invalid_message' => 'Hmm, user not found!',
 	    'finder_callback' => function(UserRepository $userRepo, string $email){
     	  return $userRepo->findOneBy(['email' => $email]);
-	    }
+	    },
+	    'attr' => [
+		    'class' => 'js-user-autocomplete'
+	    ]
     ]);
 	}
 
