@@ -5,6 +5,7 @@ namespace App\Form\DataTransformer;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Symfony\Component\Form\DataTransformerInterface;
+use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class EmailToUserTransformer implements  DataTransformerInterface {
 
@@ -30,7 +31,14 @@ class EmailToUserTransformer implements  DataTransformerInterface {
 	}
 
 	public function reverseTransform($value) {
-		dd('reverse transform', $value);
+		$user = $this->userRepo->findOneBy(['email' => $value]);
+		if(!$user){
+			throw new TransformationFailedException(sprintf(
+				'No user found with email "%s"',
+				$value
+			));
+		}
+		return $user;
 	}
 
 }
