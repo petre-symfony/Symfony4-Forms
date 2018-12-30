@@ -4,7 +4,7 @@ $(document).ready(function () {
 		$(this).autocomplete({hint: false}, [{
 			source: function (query, cb) {
 				$.ajax({
-					url: autocompleteURL
+					url: autocompleteURL+'?query='+query
 				})
 				.then(function (data) {
 					cb(data.users);
