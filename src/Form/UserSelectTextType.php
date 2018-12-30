@@ -21,7 +21,10 @@ class UserSelectTextType extends AbstractType {
 	}
 
 	public function buildForm(FormBuilderInterface $builder, array $options) {
-		$builder->addModelTransformer(new EmailToUserTransformer($this->userRepo));
+		$builder->addModelTransformer(new EmailToUserTransformer(
+			$this->userRepo,
+			$options['finder_callback']
+		));
 	}
 
 	public function getParent() {
@@ -30,7 +33,10 @@ class UserSelectTextType extends AbstractType {
 
 	public function configureOptions(OptionsResolver $resolver) {
     $resolver->setDefaults([
-    	'invalid_message' => 'Hmm, user not found!'
+    	'invalid_message' => 'Hmm, user not found!',
+	    'finder_callback' => function(UserRepository $userRepo, string $email){
+		    return $userRepo->findOneBy(['email' => $email]);
+	    }
     ]);
 	}
 
