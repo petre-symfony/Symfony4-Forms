@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminUtilityController extends AbstractController {
 	/**
-	 * @Route("/admin/utility/users", methods="GET")
+	 * @Route("/admin/utility/users", name="admin_utility_users", methods="GET")
 	 * @IsGranted("ROLE_ADMIN_ARTICLE")
 	 */
 	public function getUserApi(UserRepository $userRepo){
