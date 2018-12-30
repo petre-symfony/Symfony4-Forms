@@ -38,7 +38,7 @@ class ArticleAdminController extends AbstractController {
   }
 
   /**
-   * @Route("/admin/article/{id}/edit")
+   * @Route("/admin/article/{id}/edit", name="admin_article_edit")
    * @IsGranted("MANAGE", subject="article")
    */
   public function edit(Article $article,
@@ -50,8 +50,10 @@ class ArticleAdminController extends AbstractController {
 	  if($form->isSubmitted() && $form->isValid()){
 		  $em->persist($article);
 		  $em->flush();
-		  $this->addFlash('success', 'Article Created! Knowledge is power!');
-		  return $this->redirectToRoute('admin_article_list');
+		  $this->addFlash('success', 'Article Updated! Inaccuracies squashed!');
+		  return $this->redirectToRoute('admin_article_edit', [
+			  'id' => $article->getId()
+		  ]);
 	  }
 	  return $this->render('article_admin/new.html.twig', [
 		  'articleForm' => $form->createView()
