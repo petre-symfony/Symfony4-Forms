@@ -7,7 +7,7 @@ use Symfony\Component\Form\DataTransformerInterface;
 
 class EmailToUserTransformer implements  DataTransformerInterface {
 	public function transform($value) {
-		if(null === false){
+		if(null === $value){
 			return '';
 		}
 
