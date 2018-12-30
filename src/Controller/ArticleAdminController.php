@@ -20,9 +20,17 @@ class ArticleAdminController extends AbstractController {
     $form = $this->createForm(ArticleFormType::class);
 
 	  $form->handleRequest($request);
-	  
+
 	  if($form->isSubmitted() && $form->isValid()){
-		  dd($form->getData());
+		  $data = $form->getData();
+		  $article = new Article();
+		  $article->setTitle($data['title']);
+		  $article->setContent($data['content']);
+		  $article->setAuthor($this->getUser());
+		  $em->persist($article);
+		  $em->flush();
+		  
+		  return $this->redirectToRoute('app_homepage');
 	  }
 
     return $this->render('article_admin/new.html.twig', [
