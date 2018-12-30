@@ -13,7 +13,9 @@ class ArticleFormType extends AbstractType {
 			->add('title', TextType::class, [
 				'help' => 'Choose something catchy!'
 			])
-			->add('content');
+			->add('content')
+			->add('publishedAt')
+		;
 	}
 
 	public function configureOptions(OptionsResolver $resolver) {
