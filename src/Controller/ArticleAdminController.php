@@ -18,7 +18,7 @@ class ArticleAdminController extends AbstractController {
    * @IsGranted("ROLE_ADMIN_ARTICLE")
    */
   public function new(EntityManagerInterface $em, Request $request) {
-    $form = $this->createForm(ArticleFormType::class, new Article());
+    $form = $this->createForm(ArticleFormType::class);
 
     $form->handleRequest($request);
 
@@ -47,7 +47,9 @@ class ArticleAdminController extends AbstractController {
     Request $request,
     EntityManagerInterface $em
   ) {
-	  $form = $this->createForm(ArticleFormType::class, $article);
+	  $form = $this->createForm(ArticleFormType::class, $article, [
+	  	'include_published_at' => true
+	  ]);
 
 	  $form->handleRequest($request);
 
