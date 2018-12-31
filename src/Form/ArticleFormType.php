@@ -70,7 +70,11 @@ class ArticleFormType extends AbstractType {
 		$builder->get('location')->addEventListener(
 			FormEvents::POST_SUBMIT,
 			function(FormEvent $event){
-				dd($event);
+				$form = $event->getForm();
+				$this->setupSpecificLocationNameField(
+					$form->getParent(),
+					$form->getData()
+				);
 			}
 		);
 	}
@@ -117,7 +121,7 @@ class ArticleFormType extends AbstractType {
 			return;
 		}
 
-		$choices = this->$this->getLocationNameChoices($location);
+		$choices = $this->getLocationNameChoices($location);
 
 		if (null === $choices){
 			$form->remove('specificLocationName');
