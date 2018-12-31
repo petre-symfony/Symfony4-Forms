@@ -10,7 +10,6 @@ class UniqueUserValidator extends ConstraintValidator {
     /* @var $constraint App\Validator\UniqueUser */
 
     $this->context->buildViolation($constraint->message)
-      ->setParameter('{{ value }}', $value)
       ->addViolation();
   }
 }
