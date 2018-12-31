@@ -15,7 +15,7 @@ class TextAreaSizeExtension implements FormTypeExtensionInterface {
 	}
 
 	public function buildView(FormView $view, FormInterface $form, array $options) {
-		// TODO: Implement buildView() method.
+		$view->vars['attr']['rows'] = 10;
 	}
 
 	public function finishView(FormView $view, FormInterface $form, array $options) {
