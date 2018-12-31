@@ -79,6 +79,11 @@ class Article {
    */
   private $location;
 
+  /**
+   * @ORM\Column(type="string", length=255, nullable=true)
+   */
+  private $specificLocationName;
+
   public function __construct() {
     $this->comments = new ArrayCollection();
     $this->tags = new ArrayCollection();
@@ -237,14 +242,14 @@ class Article {
 	 * @Assert\Callback
 	 */
 	public function validate(ExecutionContextInterface $context, $payload) {
-    if (stripos($this->getTitle(), 'the borg') !== false){
-      $context
-        ->buildViolation('\'Um.. the Bork kinda makes us nervous\'')
-        ->atPath('title')
-        ->addViolation()
-      ;
-    }
-  }
+   if (stripos($this->getTitle(), 'the borg') !== false){
+     $context
+       ->buildViolation('\'Um.. the Bork kinda makes us nervous\'')
+       ->atPath('title')
+       ->addViolation()
+     ;
+   }
+ }
 
   public function getLocation(): ?string {
     return $this->location;
@@ -252,6 +257,16 @@ class Article {
 
   public function setLocation(?string $location): self {
     $this->location = $location;
+
+    return $this;
+  }
+
+  public function getSpecificLocationName(): ?string {
+    return $this->specificLocationName;
+  }
+
+  public function setSpecificLocationName(?string $specificLocationName): self {
+    $this->specificLocationName = $specificLocationName;
 
     return $this;
   }
