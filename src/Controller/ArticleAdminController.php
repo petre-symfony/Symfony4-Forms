@@ -18,7 +18,7 @@ class ArticleAdminController extends AbstractController {
    * @IsGranted("ROLE_ADMIN_ARTICLE")
    */
   public function new(EntityManagerInterface $em, Request $request) {
-    $form = $this->createForm(ArticleFormType::class);
+    $form = $this->createForm(ArticleFormType::class, new Article());
 
     $form->handleRequest($request);
 
